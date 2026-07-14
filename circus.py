@@ -1,5 +1,5 @@
 # Example file showing a basic pygame "game loop"
-import pygame
+import pygame, player
 
 # pygame setup
 pygame.init()
@@ -8,36 +8,12 @@ screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 running = True
 delta_time = 0
-
-# Initial player position
-player_size = player_width, player_height = 100, 100
-player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+player = player.Player(100, 100, screen)
 
 def update():
-    global screen, player_pos, delta_time
+    global delta_time
 
-    keys = pygame.key.get_pressed()
-
-    if keys[pygame.K_w]:
-        player_pos.y -= 300 * delta_time
-    if keys[pygame.K_s]:
-        player_pos.y += 300 * delta_time
-    if keys[pygame.K_a]:
-        player_pos.x -= 300 * delta_time
-    if keys[pygame.K_d]:
-        player_pos.x += 300 * delta_time
-
-    half_width = player_width / 2 if player_width > 0 else 0
-    half_height = player_height / 2 if player_height > 0 else 0
-
-    if player_pos.x > screen.get_width() - half_width:
-        player_pos.x = screen.get_width() - half_width
-    if player_pos.x < half_width:
-        player_pos.x = half_width
-    if player_pos.y > screen.get_height() - half_height:
-        player_pos.y = screen.get_height() - half_height
-    if player_pos.y < half_height:
-        player_pos.y = half_height
+    player.update(delta_time)
 
 
 def draw():
@@ -46,7 +22,7 @@ def draw():
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("darkblue")
 
-    pygame.draw.circle(screen, "red", player_pos, (player_width / 2))
+    player.draw()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
