@@ -8,12 +8,12 @@ screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 running = True
 delta_time = 0
-player = player.Player(100, 100, screen)
+player = player.Player(100, 100)
 
 def update():
-    global delta_time
+    global screen, delta_time
 
-    player.update(delta_time)
+    player.update(screen, delta_time)
 
 
 def draw():
@@ -22,7 +22,7 @@ def draw():
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("darkblue")
 
-    player.draw()
+    player.draw(screen)
 
     # flip() the display to put your work on screen
     pygame.display.flip()
