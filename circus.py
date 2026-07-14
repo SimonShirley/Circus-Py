@@ -10,10 +10,11 @@ running = True
 delta_time = 0
 
 # Initial player position
+player_size = player_width, player_height = 100, 100
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
 def update():
-    global player_pos, delta_time
+    global screen, player_pos, delta_time
 
     keys = pygame.key.get_pressed()
 
@@ -26,6 +27,18 @@ def update():
     if keys[pygame.K_d]:
         player_pos.x += 300 * delta_time
 
+    half_width = player_width / 2 if player_width > 0 else 0
+    half_height = player_height / 2 if player_height > 0 else 0
+
+    if player_pos.x > screen.get_width() - half_width:
+        player_pos.x = screen.get_width() - half_width
+    if player_pos.x < half_width:
+        player_pos.x = half_width
+    if player_pos.y > screen.get_height() - half_height:
+        player_pos.y = screen.get_height() - half_height
+    if player_pos.y < half_height:
+        player_pos.y = half_height
+
 
 def draw():
     global screen
@@ -33,7 +46,7 @@ def draw():
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("darkblue")
 
-    pygame.draw.circle(screen, "red", player_pos, 40)
+    pygame.draw.circle(screen, "red", player_pos, (player_width / 2))
 
     # flip() the display to put your work on screen
     pygame.display.flip()
