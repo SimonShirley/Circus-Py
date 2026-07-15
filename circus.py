@@ -1,5 +1,5 @@
 # Example file showing a basic pygame "game loop"
-import pygame, player, balloon
+import pygame, player, balloon, logging
 
 # pygame setup
 pygame.init()
@@ -16,6 +16,15 @@ balloon_width = screen_width / ((balloon_line_count - 1) * 2)
 for i in range(0, balloon_line_count):
     balloon_list.append(balloon.Balloon((i * balloon_width * 2), balloon_width, balloon_width, balloon_width))
 
+logger = logging.getLogger('simple_example')
+logger.setLevel(logging.DEBUG)
+console = logging.StreamHandler()
+console.setLevel(level=logging.DEBUG)
+formatter =  logging.Formatter('%(levelname)s : %(message)s')
+console.setFormatter(formatter)
+logger.addHandler(console)
+
+logger.debug('simple message')
 
 def update():
     global screen, delta_time
