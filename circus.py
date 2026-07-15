@@ -1,5 +1,5 @@
 # Example file showing a basic pygame "game loop"
-import pygame, player
+import pygame, player, balloon
 
 # pygame setup
 pygame.init()
@@ -9,9 +9,19 @@ clock = pygame.time.Clock()
 running = True
 delta_time = 0
 player = player.Player(100, 100)
+balloon_list = []
+balloon_line_count = 21
+balloon_width = screen_width / ((balloon_line_count - 1) * 2)
+
+for i in range(0, balloon_line_count):
+    balloon_list.append(balloon.Balloon((i * balloon_width * 2), balloon_width, balloon_width, balloon_width))
+
 
 def update():
     global screen, delta_time
+
+    for balloon in balloon_list:
+        balloon.update(screen, delta_time)
 
     player.update(screen, delta_time)
 
@@ -21,6 +31,9 @@ def draw():
     
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("darkblue")
+
+    for balloon in balloon_list:
+        balloon.draw(screen)
 
     player.draw(screen)
 
