@@ -2,12 +2,14 @@ import pygame
 
 class Player:
     # Initial player position
-    player_size = player_width, player_height = 100, 100
+    player_width, player_height = 100, 100
     player_pos: pygame.Vector2 = pygame.Vector2(0, 0)
 
 
     def __init__(self, width: int, height: int):
         self.player_pos = pygame.Vector2(width / 2, height / 2)
+        self.player_width = width if width > 0 else 1
+        self.player_height = height if height > 0 else 1
         
 
     def update(self, screen: pygame.Surface, delta_time: float):
