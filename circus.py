@@ -10,11 +10,8 @@ running = True
 delta_time = 0
 player = player.Player(screen_width / 10, screen_width / 10)
 balloon_list = []
-balloon_line_count = 21
-balloon_width = screen_width / ((balloon_line_count - 1) * 2)
-
-for i in range(0, balloon_line_count):
-    balloon_list.append(balloon.Balloon((i * balloon_width * 2), balloon_width, balloon_width, balloon_width))
+balloon_line_count = 25
+balloon_width = screen_width / (balloon_line_count * 2)
 
 logger = logging.getLogger('simple_example')
 logger.setLevel(logging.DEBUG)
@@ -23,6 +20,12 @@ console.setLevel(level=logging.DEBUG)
 formatter =  logging.Formatter('%(levelname)s : %(message)s')
 console.setFormatter(formatter)
 logger.addHandler(console)
+
+for i in range(0, 3):
+    for j in range(0, balloon_line_count + 1):
+        balloon_list.append(balloon.Balloon((j * balloon_width * 2), (i * balloon_width * 2) + balloon_width, balloon_width, balloon_width))
+
+
 
 logger.debug('simple message')
 
