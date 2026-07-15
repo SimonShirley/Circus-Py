@@ -5,6 +5,7 @@ import pygame, player, balloon, logging
 pygame.init()
 screen_size = screen_width, screen_height = 1280, 720
 screen = pygame.display.set_mode(screen_size)
+pygame.display.set_caption("Circus Py, by Alto Fluff")
 clock = pygame.time.Clock()
 running = True
 delta_time = 0
