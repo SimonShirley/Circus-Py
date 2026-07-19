@@ -6,13 +6,13 @@ class Player:
     player_pos: pygame.Vector2 = pygame.Vector2(0, 0)
 
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int) -> Player:
         self.player_pos = pygame.Vector2(width / 2, height / 2)
         self.player_width = width if width > 0 else 1
         self.player_height = height if height > 0 else 1
         
 
-    def update(self, screen: pygame.Surface, delta_time: float):
+    def update(self, screen: pygame.Surface, delta_time: float) -> None:
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_w]:
@@ -37,7 +37,7 @@ class Player:
             self.player_pos.y = half_height
 
     
-    def draw(self, screen: pygame.Surface):
+    def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.circle(screen, "red", self.player_pos, self.player_width / 2)
 
     

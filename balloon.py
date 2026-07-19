@@ -31,7 +31,7 @@ class Balloon:
         self._active = state
         
 
-    def update(self, screen: pygame.Surface, delta_time: float):
+    def update(self, screen: pygame.Surface, delta_time: float) -> None:
         self.balloon_position.x += self.move_speed * delta_time
 
         if self.balloon_position.x > screen.get_width() + self.ballon_width:

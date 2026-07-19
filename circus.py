@@ -4,15 +4,15 @@ import pygame, player, balloon, logging
 # pygame setup
 pygame.init()
 screen_size = screen_width, screen_height = 1280, 720
-screen = pygame.display.set_mode(screen_size)
+screen: pygame.Surface = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Circus Py, by Alto Fluff")
-clock = pygame.time.Clock()
-running = True
-delta_time = 0
-player = player.Player(screen_width / 10, screen_width / 10)
-balloon_list = []
-balloon_line_count = 25
-balloon_width = screen_width / (balloon_line_count * 2)
+clock: pygame.Clock = pygame.time.Clock()
+running: bool = True
+delta_time: float = 0
+player = player.Player(screen_width / 25, screen_width / 25)
+balloon_list: list[balloon.Balloon] = []
+balloon_line_count: int = 25
+balloon_width: float = screen_width / (balloon_line_count * 2)
 
 logger = logging.getLogger('simple_example')
 logger.setLevel(logging.DEBUG)
@@ -30,7 +30,7 @@ for i in range(0, 3):
 
 logger.debug('simple message')
 
-def update():
+def update() -> None:
     global screen, delta_time
 
     player.update(screen, delta_time)
@@ -45,7 +45,7 @@ def update():
                 balloon.set_active(False)
 
 
-def draw():
+def draw() -> None:
     global screen
     
     # fill the screen with a color to wipe away anything from last frame
