@@ -39,3 +39,7 @@ class Player:
     
     def draw(self, screen: pygame.Surface):
         pygame.draw.circle(screen, "red", self.player_pos, self.player_width / 2)
+
+    
+    def get_bounding_rect(self) -> pygame.rect.Rect:
+        return pygame.rect.Rect((self.player_pos.x, self.player_pos.y), (self.player_width, self.player_height))

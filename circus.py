@@ -33,10 +33,16 @@ logger.debug('simple message')
 def update():
     global screen, delta_time
 
-    for balloon in balloon_list:
-        balloon.update(screen, delta_time)
-
     player.update(screen, delta_time)
+
+    for balloon in balloon_list:
+        balloon.update(screen, 0.02)
+
+        if balloon.get_active():
+            balloon_collision: bool = balloon.has_collided(player.get_bounding_rect())
+
+            if balloon_collision:
+                balloon.set_active(False)
 
 
 def draw():
