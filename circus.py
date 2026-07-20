@@ -1,5 +1,5 @@
 # Example file showing a basic pygame "game loop"
-import pygame, player, balloon, logging
+import pygame, player, balloon, logging, console_logger
 
 # pygame setup
 pygame.init()
@@ -14,20 +14,11 @@ balloon_list: list[balloon.Balloon] = []
 balloon_line_count: int = 25
 balloon_width: float = screen_width / (balloon_line_count * 2)
 
-logger = logging.getLogger('simple_example')
-logger.setLevel(logging.DEBUG)
-console = logging.StreamHandler()
-console.setLevel(level=logging.DEBUG)
-formatter =  logging.Formatter('%(levelname)s : %(message)s')
-console.setFormatter(formatter)
-logger.addHandler(console)
-
 for i in range(0, 3):
     for j in range(0, balloon_line_count + 1):
         balloon_list.append(balloon.Balloon((j * balloon_width * 2), (i * balloon_width * 2) + balloon_width, balloon_width, balloon_width))
 
-
-
+logger: logging.Logger = console_logger.Logger().get_logger()
 logger.debug('simple message')
 
 def update() -> None:
