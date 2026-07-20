@@ -42,4 +42,7 @@ class Player:
 
     
     def get_bounding_rect(self) -> pygame.rect.Rect:
-        return pygame.rect.Rect((self.player_pos.x, self.player_pos.y), (self.player_width, self.player_height))
+        top_left_x: float = self.player_pos.x - (self.player_width / 2)
+        top_left_y: float = self.player_pos.y - (self.player_height / 2)
+
+        return pygame.rect.Rect((top_left_x, top_left_y), (self.player_width, self.player_height))
