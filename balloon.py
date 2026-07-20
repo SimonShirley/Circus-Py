@@ -19,9 +19,13 @@ class Balloon:
 
 
     def has_collided(self, player_rect: pygame.rect.Rect) -> bool:
-        balloon_rect = pygame.rect.Rect((self.balloon_position.x, self.balloon_position.y), (self.ballon_width, self.balloon_height))
+        balloon_rect = self.get_bounding_rect()
 
         return balloon_rect.colliderect(player_rect)
+    
+
+    def get_bounding_rect(self) -> pygame.rect.Rect:
+        return pygame.rect.Rect((self.balloon_position.x, self.balloon_position.y), (self.ballon_width, self.balloon_height))
     
 
     def get_active(self) -> bool:
