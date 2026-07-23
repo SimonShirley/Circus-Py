@@ -18,10 +18,10 @@ class Balloon:
         self.balloon_height = height
 
 
-    def has_collided(self, player_rect: pygame.rect.Rect) -> bool:
+    def has_collided(self, acrobat_rect: pygame.rect.Rect) -> bool:
         balloon_rect = self.get_bounding_rect()
 
-        return balloon_rect.colliderect(player_rect)
+        return balloon_rect.colliderect(acrobat_rect)
     
 
     def get_bounding_rect(self) -> pygame.rect.Rect:

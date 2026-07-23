@@ -1,5 +1,5 @@
 # Example file showing a basic pygame "game loop"
-import pygame, player, balloon, logging, console_logger
+import pygame, acrobat, balloon, logging, console_logger
 
 # pygame setup
 pygame.init()
@@ -9,7 +9,7 @@ pygame.display.set_caption("Circus Py, by Alto Fluff")
 clock: pygame.Clock = pygame.time.Clock()
 running: bool = True
 delta_time: float = 0
-player = player.Player(screen_width / 25, screen_width / 25)
+player = acrobat.Acrobat(screen_width / 25, screen_width / 25, pygame.Vector2(0, 500))
 balloon_list: list[balloon.Balloon] = []
 balloon_line_count: int = 25
 balloon_width: float = screen_width / (balloon_line_count * 2)
